@@ -12,6 +12,11 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     {
+
+      overlays.default = final: prev: {
+        headlamp = (prev.callPackage ./default.nix) { };
+      };
+
       packages = forAllSystems (
         system:
         let
