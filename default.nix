@@ -7,6 +7,8 @@
   git,
   electron_36,
   rsync,
+  makeDesktopItem,
+  copyDesktopItems,
 }:
 let
   electron = electron_36;
@@ -63,6 +65,7 @@ buildNpmPackage {
   nativeBuildInputs = [
     electron
     rsync # see scripts/after-sync.js
+    copyDesktopItems
   ];
 
   env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
@@ -132,10 +135,36 @@ buildNpmPackage {
             --add-flags $out/share/headlamp/resources/app.asar \
             --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
             --inherit-argv0
+
+          for size in 192 512; do
+            mkdir -p $out/share/icons/hicolor/"$size"x"$size"/apps
+            ln -s \
+              $out/share/headlamp/resources/frontend/android-chrome-"$size"x"$size".png \
+              $out/share/icons/hicolor/"$size"x"$size"/apps/headlamp.png
+          done
+          for size in 16 32; do
+            mkdir -p $out/share/icons/hicolor/"$size"x"$size"/apps
+            ln -s \
+              $out/share/headlamp/resources/frontend/favicon-"$size"x"$size".png \
+              $out/share/icons/hicolor/"$size"x"$size"/apps/headlamp.png
+          done
         ''
     }
 
+    runHook postInstall
   '';
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "headlamp";
+      desktopName = "Headlamp";
+      comment = "A user-friendly Kubernetes UI focused on extensibility";
+      icon = "headlamp";
+      exec = "headlamp";
+      categories = [ ];
+      mimeTypes = [ ];
+    })
+  ];
 
   meta = with lib; {
     description = "Headlamp is a user-friendly Kubernetes UI focused on extensibility";
