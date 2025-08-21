@@ -56,7 +56,12 @@ in
 buildNpmPackage {
   pname = "headlamp";
 
-  inherit src version;
+  inherit
+    src
+    version
+    frontend
+    backend
+    ;
 
   sourceRoot = "${src.name}/app";
 
