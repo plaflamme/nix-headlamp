@@ -12,12 +12,12 @@
 }:
 let
   electron = electron_36;
-  version = "0.34.0";
+  version = "0.35.0";
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
     repo = "headlamp";
     rev = "v${version}";
-    hash = "sha256-l9W/DXyYgQrwXDXtJ+4N6eKNs82EJMrPnO94L9m7d9A=";
+    hash = "sha256-2U+vXpW0zBlcnqChEx5pVYHqYbH5TEbiejTzcCZJMAg=";
     leaveDotGit = true;
   };
   backend = buildGoModule {
@@ -25,7 +25,7 @@ let
 
     inherit src version;
 
-    vendorHash = "sha256-Qk7jhSt8wE59ta3dG1UvcAoazsJfHT78der1SO+mrlA=";
+    vendorHash = "sha256-qSPQsUQYTkJRaZrKVh7AqxAjLjausvpv2oPixy7zf3E=";
 
     enableParallelBuilding = true;
 
@@ -42,7 +42,7 @@ let
 
     sourceRoot = "${src.name}/frontend";
 
-    npmDepsHash = "sha256-9Y2pykQjJnZAXipIKCSeKyzl1Brkzy7pGE4iGgCr+nw=";
+    npmDepsHash = "sha256-RLqy89mthCKOsANT7zFS/Qq0MwsbaQgZJVxFu09PD3M=";
 
     nativeBuildInputs = [
       git
@@ -65,7 +65,7 @@ buildNpmPackage {
 
   sourceRoot = "${src.name}/app";
 
-  npmDepsHash = "sha256-eNbRlZRxEerGxmqwvEFYSmiBrRvxMvQ9zuFCbztWNO8=";
+  npmDepsHash = "sha256-P3AlsUcQmPk1dJGbPCA4kob0SEa20xki1k5xmXeVGes=";
 
   nativeBuildInputs = [
     electron
