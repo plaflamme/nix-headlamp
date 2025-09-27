@@ -17,8 +17,7 @@ let
     owner = "kubernetes-sigs";
     repo = "headlamp";
     rev = "v${version}";
-    hash = "sha256-2U+vXpW0zBlcnqChEx5pVYHqYbH5TEbiejTzcCZJMAg=";
-    leaveDotGit = true;
+    hash = "sha256-0j3tTx5o8BaocuogIYBNVP5fvYYqisJmKOfDeNdgf48=";
   };
   backend = buildGoModule {
     pname = "headlamp-backend";
@@ -44,9 +43,10 @@ let
 
     npmDepsHash = "sha256-RLqy89mthCKOsANT7zFS/Qq0MwsbaQgZJVxFu09PD3M=";
 
-    nativeBuildInputs = [
-      git
-    ];
+    postPatch = ''
+      substituteInPlace make-env.js --replace-fail "const gitVersion = execSync('git rev-parse HEAD').toString().trim();" 'const gitVersion="${version}"'
+
+    '';
 
     postInstall = ''
       cp -r build $out/
@@ -78,7 +78,7 @@ buildNpmPackage {
   postPatch = ''
     substituteInPlace package.json --replace-fail '"beforeBuild": "./scripts/build-backend.js",' ""
     substituteInPlace package.json --replace-fail '../backend/headlamp-server' '${backend}/bin/headlamp-server'
-    substituteInPlace package.json  --replace-fail '../frontend/build' '${frontend}/build'
+    substituteInPlace package.json --replace-fail '../frontend/build' '${frontend}/build'
 
     # electron complains otherwise
     substituteInPlace package.json --replace-fail '"asar": false,' ""
