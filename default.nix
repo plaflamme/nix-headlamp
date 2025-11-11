@@ -4,14 +4,13 @@
   buildGoModule,
   buildNpmPackage,
   fetchFromGitHub,
-  git,
-  electron_36,
+  electron_39,
   rsync,
   makeDesktopItem,
   copyDesktopItems,
 }:
 let
-  electron = electron_36;
+  electron = electron_39;
   version = "0.37.0";
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
