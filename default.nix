@@ -11,19 +11,19 @@
 }:
 let
   electron = electron_39;
-  version = "0.37.0";
+  version = "0.38.0";
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
     repo = "headlamp";
     rev = "v${version}";
-    hash = "sha256-n6yzHTayWyjbpUWnVgACQ7jkdTMoNGjKJrrFW/5HWE8=";
+    hash = "sha256-h5FUU18pXOoxPqkoNnhL7gf7wtLwvuIsJv9CDBs1U5o=";
   };
   backend = buildGoModule {
     pname = "headlamp-backend";
 
     inherit src version;
 
-    vendorHash = "sha256-Ro/tgyoXobhn6sLe9Z5ucGqbgEiR+Pfyn6gWR6omvbU=";
+    vendorHash = "sha256-x71wjOXk222JmIZGU2gKKXsqjTKMpMS8YPVhPKS4ssI=";
 
     enableParallelBuilding = true;
 
@@ -40,7 +40,7 @@ let
 
     sourceRoot = "${src.name}/frontend";
 
-    npmDepsHash = "sha256-wWSkDFrIq0nWvzFFrFVBLnQ2t5qrvIVNApqzPMhvvfQ=";
+    npmDepsHash = "sha256-deHlkxx6gdCt+xIgpt5Rodo1oDxyB6Xso+W19SXieCo=";
 
     postPatch = ''
       substituteInPlace make-env.js --replace-fail "const gitVersion = execSync('git rev-parse HEAD').toString().trim();" 'const gitVersion="${version}"'
@@ -64,7 +64,7 @@ buildNpmPackage {
 
   sourceRoot = "${src.name}/app";
 
-  npmDepsHash = "sha256-42FrrDjm+BhX/lII1PCN/CrmGwLFegV3j1k0iq8GPHk=";
+  npmDepsHash = "sha256-Gtq/gNxSLfmq7qnaYFaKeHXlHClMAqYvgsfnCIlLKd8=";
 
   nativeBuildInputs = [
     electron
