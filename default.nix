@@ -11,7 +11,7 @@
 }:
 let
   electron = electron_39;
-  version = "0.39.0";
+  version = "0.40.1";
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
     repo = "headlamp";
