@@ -11,12 +11,12 @@
 }:
 let
   electron = electron_39;
-  version = "0.39.0";
+  version = "0.40.1";
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
     repo = "headlamp";
     rev = "v${version}";
-    hash = "sha256-ew4coolVqfU82VTMv7MMb0NUxXbwhroUoVVVMUzm5XQ=";
+    hash = "sha256-pqaEwbMC8zMMs9gy078iJrvuGqGbvT3OMuvI5kmVBik=";
   };
   backend = buildGoModule {
     pname = "headlamp-backend";
@@ -40,7 +40,7 @@ let
 
     sourceRoot = "${src.name}/frontend";
 
-    npmDepsHash = "sha256-JFaB7jMsIsU3zysA/cNicfsxWyh/T/pov9YV5+dC4+E=";
+    npmDepsHash = "sha256-vJiAqhwiyfEGWUap1dg4LrY2RnOOEHbt6wp/rUcsXDg=";
 
     postPatch = ''
       substituteInPlace make-env.js --replace-fail "const gitVersion = execSync('git rev-parse HEAD').toString().trim();" 'const gitVersion="${version}"'
