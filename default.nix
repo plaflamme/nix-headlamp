@@ -64,7 +64,7 @@ buildNpmPackage {
 
   sourceRoot = "${src.name}/app";
 
-  npmDepsHash = "sha256-+ZV+vl+w1GtlDRJ3DQ4SCLv2KtSzob1b0Za7MXIZIjE=";
+  npmDepsHash = "sha256-Y7xWsEzVWC1LjCfGNYYsjQIz3q5knBv/OiKADNXdKxk=";
 
   nativeBuildInputs = [
     electron
