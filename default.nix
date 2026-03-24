@@ -129,7 +129,16 @@ buildNpmPackage {
       else
         ''
           mkdir -p $out/share/headlamp
-          pushd dist/linux-unpacked
+          ${
+            if stdenv.hostPlatform.isAarch64 then
+              ''
+                pushd dist/linux-arm64-unpacked
+              ''
+            else
+              ''
+                pushd dist/linux-unpacked
+              ''
+          }
           # TODO: some of these point into /build, not sure how to avoid installing these.
           rm -rf resources/app/node_modules/*/node_modules/.bin
           cp -r locales resources{,.pak} $out/share/headlamp
