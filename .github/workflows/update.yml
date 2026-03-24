@@ -48,7 +48,7 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
           rm commit.md
 
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         if: ${{ steps.commit-message.outputs.message }}
         with:
           commit-message: ${{ steps.commit-message.outputs.message }}
