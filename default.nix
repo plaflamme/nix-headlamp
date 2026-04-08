@@ -93,7 +93,6 @@ buildNpmPackage {
     npm run copy-icons
     npm run copy-plugins
     npm run compile-electron
-    npm run prod-deps
     ${
       if stdenv.hostPlatform.isDarwin then
         ''
