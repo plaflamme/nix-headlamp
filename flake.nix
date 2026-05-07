@@ -16,20 +16,22 @@
       ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
-    {
+    builtins.trace
+      "WARNING: the nix-headlamp flake is deprecated. Use the package from nixpkgs directly instead."
+      {
 
-      overlays.default = final: prev: {
-        headlamp = (prev.callPackage ./default.nix) { };
+        overlays.default = final: prev: {
+          headlamp = (prev.callPackage ./default.nix) { };
+        };
+
+        packages = forAllSystems (
+          system:
+          let
+            pkgs = import nixpkgs { inherit system; };
+          in
+          {
+            default = (pkgs.callPackage ./default.nix) { };
+          }
+        );
       };
-
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          default = (pkgs.callPackage ./default.nix) { };
-        }
-      );
-    };
 }

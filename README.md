@@ -1,5 +1,7 @@
 # nix-headlamp
 
+:warning: This flake is deprecated now that headlamp is [available in nixpkgs](https://github.com/NixOS/nixpkgs/blob/0859be737951b14f8963d5e7966b7bba79e09969/pkgs/by-name/he/headlamp/package.nix#L12) :warning:
+
 A nix Flake for packaging [headlamp.dev](https://headlamp.dev)
 
 See [this issue](https://github.com/NixOS/nixpkgs/issues/396028) for an eventual `nixpkgs` packaging.
